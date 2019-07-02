@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''Unittest for user'''
 import unittest
-from models.user import User
+from models.city import City
 import os
 import pep8
 
@@ -12,12 +12,12 @@ class test_user(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         '''set up before every test method'''
-        cls.user1 = User()
+        cls.city1 = City()
 
     @classmethod
     def teardown(cls):
         '''remove test instances'''
-        del cls.user1
+        del cls.city1
         try:
             os.remove("file.json")
         except BaseException:
@@ -26,45 +26,46 @@ class test_user(unittest.TestCase):
     def pep8_test_style(self):
         '''Pep8 style test'''
         pepe = pep8.StyleGuide(quiet=True)
-        res = style.check_files(['models/user.py'])
+        res = style.check_files(['models/city.py'])
         self.assertEqual(res.total_errors, 0, "Fix Style")
 
     def docstring_class_class(self):
-         self.assertIsNotNone(User.__doc__)
+         self.assertIsNotNone(City.__doc__)
 
     def check_if_hasattr(self):
         '''Checks if the methods exists'''
-        self.assertTrue(hasattr(User, "email"))
-        self.assertTrue(hasattr(User, "password"))
-        self.assertTrue(hasattr(User, "first_name"))
-        self.assertTrue(hasattr(User, "last_name"))
+	self.assertTrue(hasattr(City, "created_at"))
+        self.assertTrue(hasattr(City, "updated_at"))
+        self.assertTrue(hasattr(City, "id"))
+        self.assertTrue(hasattr(City, "state_id"))
+        self.assertTrue(hasattr(City, "name"))
 
     def constructor_test(self):
         '''Tests for the constructor'''
-        self.assertTrue(isinstance(self.user1, BaseModel))
+        self.assertTrue(isinstance(self.city1, BaseModel))
 
     def save_method_test(self):
         '''Tests save method'''
-        self.user1.save()
-        self.assertNotEqual(self.user1.created_at, self.user1.updated_at)
+        self.city1.save()
+        self.assertNotEqual(self.city1.created_at, self.city1.updated_at)
 
     def id_fun_test(self):
         """ test id functionality """
-        self.assertEqual(str, type(self.user.id))
+        self.assertEqual(str, type(self.city.id))
 
     def created_at_fun_test(self):
         """ test created_at functionality"""
-        self.assertEqual(datetime, type(self.user.created_at))
+        self.assertEqual(datetime, type(self.city.created_at))
 
     def updated_at_fun_test(self):
         """ test updated_at functionality"""
-        self.assertEqual(datetime, type(self.user.updated_at))
+        self.assertEqual(datetime, type(self.city.updated_at))
 
     def dictionary_test(self):
         '''Tests to_dict method'''
-        test_dict = self.user.to_dict()
+        test_dict = self.city.to_dict()
         self.assertEqual(type(test_dict), dict)
-        self.assertTrue('to_dict' in dir(self.user))
+        self.assertTrue('to_dict' in dir(self.city))
 
 
 if __name__ == "__main__":
