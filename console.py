@@ -15,18 +15,15 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def emptyline(self, args):
-        """shouldn’t execute anything
-        """
+        'shouldn’t execute anything\n'
         return
 
     def do_quit(self, args):
-        """Quit command to exit the program
-        """
+        'Quit command to exit the program\n'
         return True
 
     def do_EOF(self, line):
-        """EOF command (ctrl + d) to exit the program
-        """
+        'EOF command (ctrl + d) to exit the program\n'
         return True
 
     def do_create(self, args):
