@@ -17,12 +17,12 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self, args):
         """shouldn’t execute anything
         """
-        pass
+        return
 
     def do_quit(self, args):
         """Quit command to exit the program
         """
-        return(True)
+        return True
 
     def do_EOF(self, line):
         """EOF command (ctrl + d) to exit the program
