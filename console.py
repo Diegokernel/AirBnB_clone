@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """ HBNBCommand - contains the entry point of the command interprete
     attributes: prompt
-    methods: do_quit, do_EOF.
+    methods: do_quit, do_EOF, create
     """
     prompt = "(hbnb) "
 
