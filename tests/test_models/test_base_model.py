@@ -37,6 +37,33 @@ class test_base_model(unittest.TestCase):
     def test_docstring_class_class(self):
         self.assertIsNotNone(BaseModel.__doc__)
 
+    def test_check_if_hasattr(self):	
+         """Checks if the methods exists"""	
+        self.assertTrue(hasattr(BaseModel, "__init__"))	
+        self.assertTrue(hasattr(BaseModel, "created_at"))	
+        self.assertTrue(hasattr(BaseModel, "updated_at"))	
+        self.assertTrue(hasattr(BaseModel, "id"))
+        
+    def test_constructor_test(self):	
+        """Tests for the constructor"""	
+        self.assertTrue(isinstance(self.base1, BaseModel))	
+     
+    def test_save_method_test(self):	
+        """Tests save method"""	
+        self.base1.save()	
+        self.assertNotEqual(self.base1.created_at, self.base1.updated_at)	
+     
+    def test_id_fun_test(self):	
+        """ test id functionality """	
+        self.assertEqual(str, type(self.basemodel.id))	
+     
+    def test_created_at_fun_test(self):	
+        """ test created_at functionality"""	
+        self.assertEqual(datetime, type(self.basemodel.created_at))	
+     
+    def test_updated_at_fun_test(self):	
+        """ test updated_at functionality"""	
+        self.assertEqual(datetime, type(self.basemodel.updated_at))
     
     def test_dictionary_test(self):
         '''Tests to_dict method'''
