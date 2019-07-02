@@ -7,7 +7,7 @@ import os
 import pep8
 
 
-class test_user(unittest.TestCase):
+class test_place(unittest.TestCase):
     '''Tests user class'''
 
     @classmethod
@@ -35,9 +35,6 @@ class test_user(unittest.TestCase):
 
     def test_check_if_hasattr(self):
         '''Checks if the methods exists'''
-        self.assertTrue(hasattr(Place, "created_at"))
-        self.assertTrue(hasattr(Place, "updated_at"))
-        self.assertTrue(hasattr(Place, "id"))
         self.assertTrue(hasattr(Place, "city_id"))
         self.assertTrue(hasattr(Place, "user_id"))
         self.assertTrue(hasattr(Place, "name"))
@@ -49,10 +46,6 @@ class test_user(unittest.TestCase):
         self.assertTrue(hasattr(Place, "latitude"))
         self.assertTrue(hasattr(Place, "longitude"))
         self.assertTrue(hasattr(Place, "amenity_ids"))
-
-    def test_constructor_test(self):
-        '''Tests for the constructor'''
-        self.assertTrue(isinstance(self.place1, BaseModel))
 
     def test_save_method_test(self):
         '''Tests save method'''

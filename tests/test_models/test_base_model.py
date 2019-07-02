@@ -40,14 +40,8 @@ class test_base_model(unittest.TestCase):
 
     def test_check_if_hasattr(self):
         """Checks if the methods exists"""
-        self.assertTrue(hasattr(BaseModel, "__init__"))
-        self.assertTrue(hasattr(BaseModel, "created_at"))
-        self.assertTrue(hasattr(BaseModel, "updated_at"))
-        self.assertTrue(hasattr(BaseModel, "id"))
-
-    def test_constructor_test(self):
-        """Tests for the constructor"""
-        self.assertTrue(isinstance(self.base1, BaseModel))
+        self.assertTrue(hasattr(BaseModel, "save"))
+        self.assertTrue(hasattr(BaseModel, "to_dict"))
 
     def test_save_method_test(self):
         """Tests save method"""
