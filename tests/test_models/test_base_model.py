@@ -56,21 +56,21 @@ class test_base_model(unittest.TestCase):
 
     def test_id_fun_test(self):
         """ test id functionality """
-        self.assertEqual(str, type(self.basemodel.id))
+        self.assertEqual(str, type(self.base1.id))
 
     def test_created_at_fun_test(self):
         """ test created_at functionality"""
-        self.assertEqual(datetime, type(self.basemodel.created_at))
+        self.assertEqual(datetime, type(self.base1.created_at))
 
     def test_updated_at_fun_test(self):
         """ test updated_at functionality"""
-        self.assertEqual(datetime, type(self.basemodel.updated_at))
+        self.assertEqual(datetime, type(self.base1.updated_at))
 
     def test_dictionary_test(self):
         '''Tests to_dict method'''
-        test_dict = self.basemodel.to_dict()
+        test_dict = self.base1.to_dict()
         self.assertEqual(type(test_dict), dict)
-        self.assertTrue('to_dict' in dir(self.basemodel))
+        self.assertTrue('to_dict' in dir(self.base1))
 
 
 if __name__ == "__main__":
