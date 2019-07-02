@@ -26,7 +26,7 @@ class test_base_model(unittest.TestCase):
     def test_pep8_test_style(self):
         '''Pep8 style test'''
         pepe = pep8.StyleGuide(quiet=True)
-        res = style.check_files(['models/base_model.py'])
+        res = pepe.check_files(['models/base_model.py'])
         self.assertEqual(res.total_errors, 0, "Fix Style")
 
     def test_docstring_test(self):
