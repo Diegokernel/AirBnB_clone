@@ -10,9 +10,14 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """ HBNBCommand - contains the entry point of the command interprete
     attributes: prompt
-    methods: do_quit, do_EOF.
+    methods: do_quit, do_EOF, create
     """
     prompt = "(hbnb) "
+
+    def emptyline(self, args):
+        """shouldn’t execute anything
+        """
+        pass
 
     def do_quit(self, args):
         """Quit command to exit the program
