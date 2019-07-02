@@ -7,7 +7,7 @@ import os
 import pep8
 
 
-class test_user(unittest.TestCase):
+class test_city(unittest.TestCase):
     '''Tests user class'''
 
     @classmethod
@@ -35,15 +35,8 @@ class test_user(unittest.TestCase):
 
     def test_check_if_hasattr(self):
         '''Checks if the methods exists'''
-        self.assertTrue(hasattr(City, "created_at"))
-        self.assertTrue(hasattr(City, "updated_at"))
-        self.assertTrue(hasattr(City, "id"))
         self.assertTrue(hasattr(City, "state_id"))
         self.assertTrue(hasattr(City, "name"))
-
-    def test_constructor_test(self):
-        '''Tests for the constructor'''
-        self.assertTrue(isinstance(self.city1, BaseModel))
 
     def test_save_method_test(self):
         '''Tests save method'''
@@ -56,7 +49,7 @@ class test_user(unittest.TestCase):
 
     def test_created_at_fun_test(self):
         """ test created_at functionality"""
-        self.assertEqual(datetime, type(self.city.created_at))
+        self.assertEqual(datetime, type(self.city1.created_at))
 
     def test_updated_at_fun_test(self):
         """ test updated_at functionality"""

@@ -7,7 +7,7 @@ import os
 import pep8
 
 
-class test_user(unittest.TestCase):
+class test_review(unittest.TestCase):
     '''Tests user class'''
 
     @classmethod
@@ -38,10 +38,6 @@ class test_user(unittest.TestCase):
         self.assertTrue(hasattr(Review, "place_id"))
         self.assertTrue(hasattr(Review, "text"))
         self.assertTrue(hasattr(Review, "user_id"))
-
-    def test_constructor_test(self):
-        '''Tests for the constructor'''
-        self.assertTrue(isinstance(self.review1, BaseModel))
 
     def test_save_method_test(self):
         '''Tests save method'''

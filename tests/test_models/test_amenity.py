@@ -7,7 +7,7 @@ import os
 import pep8
 
 
-class test_user(unittest.TestCase):
+class test_amenity(unittest.TestCase):
     '''Tests user class'''
 
     @classmethod
@@ -36,10 +36,6 @@ class test_user(unittest.TestCase):
     def test_check_if_hasattr(self):
         '''Checks if the methods exists'''
         self.assertTrue(hasattr(Amenity, "name"))
-
-    def test_constructor(self):
-        '''Tests for the constructor'''
-        self.assertTrue(isinstance(self.amenity1, BaseModel))
 
     def test_save_method(self):
         '''Tests save method'''

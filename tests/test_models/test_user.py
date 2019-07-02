@@ -2,6 +2,7 @@
 '''Unittest for user'''
 import unittest
 from models.user import User
+from datetime import datetime
 import os
 import pep8
 
@@ -38,10 +39,6 @@ class test_user(unittest.TestCase):
         self.assertTrue(hasattr(User, "password"))
         self.assertTrue(hasattr(User, "first_name"))
         self.assertTrue(hasattr(User, "last_name"))
-
-    def test_constructor_test(self):
-        '''Tests for the constructor'''
-        self.assertTrue(isinstance(self.user1, BaseModel))
 
     def test_save_method_test(self):
         '''Tests save method'''
