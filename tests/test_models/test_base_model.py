@@ -35,7 +35,7 @@ class test_base_model(unittest.TestCase):
             self.assertIsNotNone(doc_fun.__doc__)
 
     def docstring_class_class(self):
-         self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__doc__)
 
     def check_if_hasattr(self):
         '''Checks if the methods exists'''

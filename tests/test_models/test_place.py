@@ -30,7 +30,7 @@ class test_user(unittest.TestCase):
         self.assertEqual(res.total_errors, 0, "Fix Style")
 
     def docstring_class_class(self):
-         self.assertIsNotNone(Place.__doc__)
+        self.assertIsNotNone(Place.__doc__)
 
     def check_if_hasattr(self):
         '''Checks if the methods exists'''
