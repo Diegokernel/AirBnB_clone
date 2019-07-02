@@ -30,11 +30,11 @@ class test_user(unittest.TestCase):
         self.assertEqual(res.total_errors, 0, "Fix Style")
 
     def docstring_class_class(self):
-         self.assertIsNotNone(City.__doc__)
+        self.assertIsNotNone(City.__doc__)
 
     def check_if_hasattr(self):
         '''Checks if the methods exists'''
-	self.assertTrue(hasattr(City, "created_at"))
+        self.assertTrue(hasattr(City, "created_at"))
         self.assertTrue(hasattr(City, "updated_at"))
         self.assertTrue(hasattr(City, "id"))
         self.assertTrue(hasattr(City, "state_id"))
