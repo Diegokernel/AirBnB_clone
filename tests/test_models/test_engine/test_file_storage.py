@@ -40,25 +40,7 @@ class test_FileStorage(unittest.TestCase):
         bas = BaseModel()
         kk = "{}.{}".format(type(bas).__name__, bas.id)
         self.assertTrue(kk in s_dict.keys())
-
-    def test_save(self):
-        self.assertIsNotNone(FileStorage.save)
-        self.files1.save()
-        with open("file.json", 'r') as reader:
-            string = reader.readlines()
-
-        try:
-            os.remove("file.json")
-        except BaseException:
-            pass
-
-        self.files1.save()
-
-        with open("file.json", 'r') as reader:
-            string2 = reader.readlines()
-
-        self.assertEqual(string, string2)
-        
+      
     def test_save_updated_at_created_at(self):
         self.ins.save()
         self.assertNotEqual(self.ins.created_at, self.ins.updated_at)
