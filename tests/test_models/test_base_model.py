@@ -58,6 +58,7 @@ class test_base_model(unittest.TestCase):
         """Tests save method"""
         self.base1.save()
         self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
+        self.assertTrue(os.path.exists('file.json'))
 
     def test_isinstance(self):
         self.assertIsInstance(self.base1, BaseModel)
