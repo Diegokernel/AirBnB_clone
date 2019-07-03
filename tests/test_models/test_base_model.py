@@ -45,10 +45,20 @@ class test_base_model(unittest.TestCase):
         self.assertTrue(hasattr(BaseModel, "save"))
         self.assertTrue(hasattr(BaseModel, "to_dict"))
 
+    def test_attributes(self):
+        self.base1.name = "Diego"
+        self.base1.number = 13
+        list_aa = [self.base1.name, self.base1.number]
+        show = ["Diego", 13]
+        self.assertEqual(list_aa, show)
+
     def test_save_method_test(self):
         """Tests save method"""
         self.base1.save()
         self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
+
+    def test_isinstance(self):
+        self.assertIsInstance(self.base1, BaseModel)
 
     def test_id_fun_test(self):
         """ test id functionality """
