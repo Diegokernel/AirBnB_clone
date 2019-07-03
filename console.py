@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
 
-    def emptyline(self, args):
+    def emptyline(self):
         'shouldn’t execute anything\n'
         return
 
