@@ -28,6 +28,7 @@ class test_FileStorage(unittest.TestCase):
     def test_check_if_hasattr(self):
         """Checks if the methods exists"""
         self.assertTrue(hasattr(models.storage, "_FileStorage__file_path"))
+        self.assertTrue(type(self.files1._FileStorage__file_path) is str)
 
     def test_pep8_test_style(self):
         '''Pep8 style test'''
