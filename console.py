@@ -3,7 +3,9 @@
 class: HBNBCommand
 """
 import cmd
+import re
 import models
+import shlex
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -29,15 +31,26 @@ class HBNBCommand(cmd.Cmd):
         list_args = args.split(".")
 
         if len(list_args) > 1:
-            if list_args[1] == "all()":
+            show = re.match("show(.*)", list_args[1])
+
+            if list_args[1] == "all()":  # 11.<class name>.all()
                 self.do_all(list_args[0])
-            elif list_args[1] == "count()":
+            elif list_args[1] == "count()":  # 11.<class name>.count()
                 objects = models.storage.all()
                 count = 0
                 for key, value in objects.items():
                     if value.to_dict()["__class__"] == list_args[0]:
                         count += 1
                 print(count)
+            elif show and len(list_args[1]) == show.end():  # 12.<cls>.show(id)
+                objects = models.storage.all()
+                id_obj = list_args[1][6: -2]
+                key = list_args[0] + "." + id_obj
+
+                if key in objects:
+                    print(objects[key])
+                else:
+                    print("** no instance found **")
 
     def do_quit(self, args):
         'Quit command to exit the program\n'
@@ -147,13 +160,8 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id by adding or
         updating attribute (save the change into the JSON file).
         """
-        if '"' in args:
-            args_list_list = args.split('"')  # args[0] | args[1]
-            args_list = args_list_list[0].split()
-            args_list.append(args_list_list[1].split('"')[0])
-        else:
-            args_list = args.split()
 
+        args_list = shlex.split(args)
         list_class = ["BaseModel", "Amenity", "Place", "User", "City",
                       "Review"]
         if len(args_list) == 0:  # $Update
