@@ -79,8 +79,8 @@ class test_base_model(unittest.TestCase):
         test_dict = self.base1.to_dict()
         self.assertEqual(type(test_dict), dict)
         self.assertTrue('to_dict' in dir(self.base1))
-        self.assertIsInstance(base1_dict["created_at"], str)
-        self.assertIsInstance(base1_dict["updated_at"], str)
+        self.assertIsInstance(test_dict["created_at"], str)
+        self.assertIsInstance(test_dict["updated_at"], str)
 
 if __name__ == "__main__":
     unittest.main()
