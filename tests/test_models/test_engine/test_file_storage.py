@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''Unittest for FileStorage'''
 import unittest
+import models
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import os
@@ -23,6 +24,10 @@ class test_FileStorage(unittest.TestCase):
             os.remove("file.json")
         except BaseException:
             pass
+
+    def test_check_if_hasattr(self):
+        """Checks if the methods exists"""
+        self.assertTrue(hasattr(models.storage, "_FileStorage__file_path"))
 
     def test_pep8_test_style(self):
         '''Pep8 style test'''
