@@ -58,6 +58,7 @@ class test_FileStorage(unittest.TestCase):
             string2 = reader.readlines()
 
         self.assertEqual(string, string2)
+        self.assertTrue(os.path.exists("file.json"))
 
     def test_reload(self):
         self.assertIsNotNone(FileStorage.reload)
