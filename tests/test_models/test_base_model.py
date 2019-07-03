@@ -2,6 +2,7 @@
 '''Unittest for base_model'''
 import unittest
 from models.base_model import BaseModel
+from models import storage
 from datetime import datetime
 import os
 import pep8
@@ -48,13 +49,12 @@ class test_base_model(unittest.TestCase):
     def test_isinstance(self):
         self.assertIsInstance(self.base1, BaseModel)
 
-    def test_save_updated_at_created_at(self):
-        self.ins.save()
-        self.assertNotEqual(self.ins.created_at, self.ins.updated_at)
-        dummy = BaseModel()
-        my_id = dummy.id
-        dummy.name = "Haroldo"
-        dummy.save()
+    def test_save(self):
+        self.base1.save()
+        self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
+        my_id = self.base1.id
+        self.base1.name = "Haroldo"
+        self.base1.save()
         storage.reload()
         my_objs = storage.all()["BaseModel.{}".format(my_id)]
         self.assertTrue(hasattr(my_objs, "name"))
