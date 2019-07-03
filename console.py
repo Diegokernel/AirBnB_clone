@@ -33,6 +33,7 @@ class HBNBCommand(cmd.Cmd):
         if len(list_args) > 1:
             show = re.match("show(.*)", list_args[1])
             destroy = re.match("destroy(.*)", list_args[1])
+            update = re.match("update(.*)", list_args[1])
             objects = models.storage.all()
 
             if list_args[1] == "all()":  # 11.<class name>.all()
@@ -51,7 +52,6 @@ class HBNBCommand(cmd.Cmd):
                     print(objects[key])
                 else:
                     print("** no instance found **")
-
             elif destroy and len(list_args[1]) == destroy.end():  # 13.<cls>.de
                 id_obj = list_args[1][9: -2]
                 key = list_args[0] + "." + id_obj
@@ -61,6 +61,20 @@ class HBNBCommand(cmd.Cmd):
                     self.do_destroy(args)
                 else:
                     print("** no instance found **")
+            elif update and len(list_args[1]) == update.end():  # 14.<cls>.up
+                if len(update.group()) == 8:
+                    print("sin argumentos----")
+                    args = ""
+                else:
+                    print("con argumentos----")
+                    args_init = list_args[1][7: -1]
+                    print(args_init)
+                    args_not_comma = args_init.replace(",", "")
+                    print(args_not_comma)
+                    args = list_args[0] + " " + args_not_comma
+                    print(args)
+
+                self.do_update(args)
 
     def do_quit(self, args):
         'Quit command to exit the program\n'
