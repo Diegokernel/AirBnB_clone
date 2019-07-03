@@ -2,6 +2,7 @@
 '''Unittest for FileStorage'''
 import unittest
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 import os
 import pep8
 
@@ -30,13 +31,31 @@ class test_FileStorage(unittest.TestCase):
         self.assertEqual(res.total_errors, 0, "Fix Style")
 
     def test_all(self):
-        self.assertIsNotNone(FileStorage.all)
+        s_dict = self.files1.all()
+        self.assertIsInstance(s_dict, dict)
+        self.assertIs(s_dict, self.files1._FileStorage__objects)
 
     def test_new(self):
-        self.assertIsNotNone(FileStorage.new)
+        s_dict = self.files1.all()
+        bas = BaseModel()
+        kk = "{}.{}".format(type(bas).__name__, bas.id)
+        self.assertTrue(kk in s_dict.keys())
 
     def test_save(self):
         self.assertIsNotNone(FileStorage.save)
 
     def test_reload(self):
         self.assertIsNotNone(FileStorage.reload)
+        try:
+            os.remove("file.json")
+        except BaseException:
+            pass
+        with open("file.json", "w") as writer:
+            writer.write("{}")
+        with open("file.json", "r") as reader:
+            for l in reader:
+                self.assertEqual(l, "{}")
+        self.assertIs(self.files1.reload(), None)
+
+if __name__ == "__main__":
+    unittest.main()
