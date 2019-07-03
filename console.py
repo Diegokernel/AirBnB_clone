@@ -5,6 +5,12 @@ class: HBNBCommand
 import cmd
 import models
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -47,7 +53,8 @@ class HBNBCommand(cmd.Cmd):
         name and id
         """
         args_list = args.split()
-        list_class = ["BaseModel"]
+        list_class = ["BaseModel", "Amenity", "Place", "User", "City",
+                      "Review"]
 
         if len(args_list) == 0:
             print("** class name missing **")
@@ -74,7 +81,8 @@ class HBNBCommand(cmd.Cmd):
         into the JSON file).
         """
         args_list = args.split()
-        list_class = ["BaseModel"]
+        list_class = ["BaseModel", "Amenity", "Place", "User", "City",
+                      "Review"]
 
         if len(args_list) == 0:
             print("** class name missing **")
@@ -102,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
         the class name.
         """
         args_list = args.split()
-        list_class = ["BaseModel"]
+        list_class = ["BaseModel", "Amenity", "Place", "User", "City",
+                      "Review"]
         all_objects = models.storage.all()
         list_of_print = []
 
@@ -130,8 +139,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             args_list = args.split()
 
-        list_class = ["BaseModel"]
-
+        list_class = ["BaseModel", "Amenity", "Place", "User", "City",
+                      "Review"]
         if len(args_list) == 0:  # $Update
             print("** class name missing **")
         elif len(args_list) == 1:  # 1.<class name>
