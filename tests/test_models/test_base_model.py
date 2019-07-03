@@ -54,14 +54,21 @@ class test_base_model(unittest.TestCase):
         show = ["Diego", 13]
         self.assertEqual(list_aa, show)
 
-    def test_save_method_test(self):
-        """Tests save method"""
-        self.base1.save()
-        self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
-        self.assertTrue(os.path.exists('file.json'))
-
     def test_isinstance(self):
         self.assertIsInstance(self.base1, BaseModel)
+
+    def test_save_updated_at_created_at(self):
+        self.ins.save()
+        self.assertNotEqual(self.ins.created_at, self.ins.updated_at)
+        dummy = BaseModel()
+        my_id = dummy.id
+        dummy.name = "Haroldo"
+        dummy.save()
+        storage.reload()
+        my_objs = storage.all()["BaseModel.{}".format(my_id)]
+        self.assertTrue(hasattr(my_objs, "name"))
+        self.assertTrue(my_objs.name == "Haroldo")
+        self.assertTrue(os.path.exists('file.json'))
 
     def test_id_fun_test(self):
         """ test id functionality """
