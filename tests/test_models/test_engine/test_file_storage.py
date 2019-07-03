@@ -60,18 +60,6 @@ class test_FileStorage(unittest.TestCase):
 
         self.assertEqual(string, string2)
 
-    def test_save_updated_at_created_at(self):
-        self.files1.save()
-        dummy = BaseModel()
-        my_id = dummy.id
-        dummy.name = "Haroldo"
-        dummy.save()
-        storage.reload()
-        my_objs = storage.all()["BaseModel.{}".format(my_id)]
-        self.assertTrue(hasattr(my_objs, "name"))
-        self.assertTrue(my_objs.name == "Haroldo")
-        self.assertTrue(os.path.exists('file.json'))
-
     def test_reload(self):
         self.assertIsNotNone(FileStorage.reload)
         try:
