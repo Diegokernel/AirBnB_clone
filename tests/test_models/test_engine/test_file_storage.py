@@ -43,23 +43,21 @@ class test_FileStorage(unittest.TestCase):
 
     def test_save(self):
         self.assertIsNotNone(FileStorage.save)
-         self.storage.save()
-        pthi = os.path.dirname(os.path.abspath("console.py"))
-        pti = os.path.join(pthi, "file.json")
-        with open(pti, 'r') as fi:
-            lines = fi.readlines()
+        self.files1.save()
+        with open("file.json", 'r') as reader:
+            string = reader.readlines()
 
         try:
-            os.remove(pti)
+            os.remove("file.json")
         except BaseException:
             pass
 
-        self.storage.save()
+        self.files1.save()
 
-        with open(pti, 'r') as fi:
-            lines2 = fi.readlines()
+        with open("file.json", 'r') as reader:
+            string2 = reader.readlines()
 
-        self.assertEqual(lines, lines2)
+        self.assertEqual(string, string2)
 
 
     def test_reload(self):
