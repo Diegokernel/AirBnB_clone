@@ -40,6 +40,8 @@ class test_base_model(unittest.TestCase):
 
     def test_check_if_hasattr(self):
         """Checks if the methods exists"""
+        self.assertTrue(hasattr(BaseModel, "__init__"))
+        self.assertTrue(hasattr(BaseModel, "__str__"))
         self.assertTrue(hasattr(BaseModel, "save"))
         self.assertTrue(hasattr(BaseModel, "to_dict"))
 
