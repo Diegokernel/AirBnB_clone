@@ -56,7 +56,6 @@ class FileStorage:
         with open(FileStorage.__file_path, "r", encoding="UTF-8") as file:
             content_file = file.read()  # In this case, return string of dict.
             content_deserialized = loads(content_file)  # Result = dict
-            print(type(content_deserialized))
 
             for key in content_deserialized:
                 dict_value = content_deserialized[key]
