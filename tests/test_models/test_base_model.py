@@ -15,7 +15,7 @@ class test_base_model(unittest.TestCase):
         '''set up before every test method'''
         cls.base1 = BaseModel()
         cls.base1.name = "Diego"
-        cls.basa1.num = 13
+        cls.base1.num = 13
 
     @classmethod
     def teardown(cls):
