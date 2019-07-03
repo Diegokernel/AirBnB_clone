@@ -32,23 +32,33 @@ class HBNBCommand(cmd.Cmd):
 
         if len(list_args) > 1:
             show = re.match("show(.*)", list_args[1])
+            destroy = re.match("destroy(.*)", list_args[1])
+            objects = models.storage.all()
 
             if list_args[1] == "all()":  # 11.<class name>.all()
                 self.do_all(list_args[0])
             elif list_args[1] == "count()":  # 11.<class name>.count()
-                objects = models.storage.all()
                 count = 0
                 for key, value in objects.items():
                     if value.to_dict()["__class__"] == list_args[0]:
                         count += 1
                 print(count)
             elif show and len(list_args[1]) == show.end():  # 12.<cls>.show(id)
-                objects = models.storage.all()
                 id_obj = list_args[1][6: -2]
                 key = list_args[0] + "." + id_obj
 
                 if key in objects:
                     print(objects[key])
+                else:
+                    print("** no instance found **")
+
+            elif destroy and len(list_args[1]) == destroy.end():  # 13.<cls>.de
+                id_obj = list_args[1][9: -2]
+                key = list_args[0] + "." + id_obj
+
+                if key in objects:
+                    args = list_args[0] + " " + id_obj
+                    self.do_destroy(args)
                 else:
                     print("** no instance found **")
 
@@ -87,13 +97,13 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) == 0:
             print("** class name missing **")
         elif len(args_list) == 1:
-            if not args_list[0] in list_class:
+            if args_list[0] not in list_class:
                 print("** class doesn't exist **")
             else:
                 if len(args_list) == 1:
                     print("** instance id missing **")
         else:
-            if not args_list[0] in list_class:
+            if args_list[0] not in list_class:
                 print("** class doesn't exist **")
             else:
                 id_to_check = args_list[0] + "." + args_list[1]
@@ -115,19 +125,19 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) == 0:
             print("** class name missing **")
         elif len(args_list) == 1:
-            if not args_list[0] in list_class:
+            if args_list[0] not in list_class:
                 print("** class doesn't exist **")
             else:
                 if len(args_list) == 1:
                     print("** instance id missing **")
         else:
-            if not args_list[0] in list_class:
+            if args_list[0] not in list_class:
                 print("** class doesn't exist **")
             else:
                 id_to_check = args_list[0] + "." + args_list[1]
                 all_objects = models.storage.all()
 
-                if not id_to_check not in all_objects:
+                if id_to_check not in all_objects:
                     print("** no instance found **")
                 else:
                     del all_objects[id_to_check]
@@ -148,7 +158,7 @@ class HBNBCommand(cmd.Cmd):
                 list_of_print.append(value.__str__())
             print(list_of_print)
         else:
-            if not args_list[0] in list_class:
+            if args_list[0] not in list_class:
                 print("** class doesn't exist **")
             else:
                 for key, value in all_objects.items():
@@ -167,7 +177,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) == 0:  # $Update
             print("** class name missing **")
         elif len(args_list) == 1:  # 1.<class name>
-            if not args_list[0] in list_class:  # $Update MyModel
+            if args_list[0] not in list_class:  # $Update MyModel
                 print("** class doesn't exist **")
             else:  # $ update BaseModel
                 print("** instance id missing **")
@@ -183,7 +193,7 @@ class HBNBCommand(cmd.Cmd):
                 else:  # $ update BaseModel existing-id
                     print("** attribute name missing **")
         elif len(args_list) == 3:  # 3.<attribute name>
-            if not args_list[0] in list_class:  # $Update MyModel
+            if args_list[0] not in list_class:  # $Update MyModel
                 print("** class doesn't exist **")
             else:
                 id_to_check = args_list[0] + "." + args_list[1]
@@ -194,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
                 else:  # $ update BaseModel existing-id
                     print("** value missing **")  # $ update BaseModel id
         else:  # 4."<attribute value>"
-            if not args_list[0] in list_class:  # $Update MyModel
+            if args_list[0] not in list_class:  # $Update MyModel
                 print("** class doesn't exist **")
             else:
                 id_to_check = args_list[0] + "." + args_list[1]
