@@ -24,6 +24,21 @@ class HBNBCommand(cmd.Cmd):
         'shouldn’t execute anything\n'
         return
 
+    def default(self, args):
+        'Quit command to exit the program\n'
+        list_args = args.split(".")
+
+        if len(list_args) > 1:
+            if list_args[1] == "all()":
+                self.do_all(list_args[0])
+            elif list_args[1] == "count()":
+                objects = models.storage.all()
+                count = 0
+                for key, value in objects.items():
+                    if value.to_dict()["__class__"] == list_args[0]:
+                        count += 1
+                print(count)
+
     def do_quit(self, args):
         'Quit command to exit the program\n'
         return True
