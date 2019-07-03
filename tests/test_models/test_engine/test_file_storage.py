@@ -43,6 +43,24 @@ class test_FileStorage(unittest.TestCase):
 
     def test_save(self):
         self.assertIsNotNone(FileStorage.save)
+         self.storage.save()
+        pthi = os.path.dirname(os.path.abspath("console.py"))
+        pti = os.path.join(pthi, "file.json")
+        with open(pti, 'r') as fi:
+            lines = fi.readlines()
+
+        try:
+            os.remove(pti)
+        except BaseException:
+            pass
+
+        self.storage.save()
+
+        with open(pti, 'r') as fi:
+            lines2 = fi.readlines()
+
+        self.assertEqual(lines, lines2)
+
 
     def test_reload(self):
         self.assertIsNotNone(FileStorage.reload)
