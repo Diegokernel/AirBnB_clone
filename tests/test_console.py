@@ -9,6 +9,7 @@ from console import HBNBCommand
 from datetime import datetime
 import os
 
+
 class test_console(unittest.TestCase):
     '''Tests user class'''
 
