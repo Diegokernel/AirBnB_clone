@@ -63,17 +63,11 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
             elif update and len(list_args[1]) == update.end():  # 14.<cls>.up
                 if len(update.group()) == 8:
-                    print("sin argumentos----")
                     args = ""
                 else:
-                    print("con argumentos----")
                     args_init = list_args[1][7: -1]
-                    print(args_init)
                     args_not_comma = args_init.replace(",", "")
-                    print(args_not_comma)
                     args = list_args[0] + " " + args_not_comma
-                    print(args)
-
                 self.do_update(args)
 
     def do_quit(self, args):
