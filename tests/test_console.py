@@ -57,6 +57,7 @@ class test_console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             obj = storage.all()["BaseModel.{}".format(testID)]
             command = "BaseModel.show({})".format(testID)
+            self.assertNotEqual(obj.__str__(), output.getvalue().strip())
             self.assertFalse(HBNBCommand().onecmd(command))
 
 if __name__ == "__main__":
