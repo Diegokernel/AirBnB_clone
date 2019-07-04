@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = args.split()
         list_class = ["BaseModel", "Amenity", "Place", "User", "City",
-                      "Review"]
+                      "Review", "State"]
         all_objects = models.storage.all()
         list_of_print = []
 
