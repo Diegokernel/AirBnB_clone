@@ -43,14 +43,14 @@ class test_console(unittest.TestCase):
             self.console1.onecmd("\n")
             self.assertEqual('', filer.getvalue())
 
-    def test_create_object(self):
+    def test_create(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             self.assertLess(0, len(output.getvalue().strip()))
             testKey = "BaseModel.{}".format(output.getvalue().strip())
             self.assertIn(testKey, storage.all().keys())
             
-    def test_destroy_objects_space_notation(self):
+    def test_destroy(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             testID = output.getvalue().strip()
