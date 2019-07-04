@@ -58,7 +58,6 @@ class test_console(unittest.TestCase):
             obj = storage.all()["BaseModel.{}".format(testID)]
             command = "BaseModel.show({})".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
-            self.assertEqual(obj.__str__(), output.getvalue().strip())
 
 if __name__ == "__main__":
     unittest.main()
