@@ -50,5 +50,15 @@ class test_console(unittest.TestCase):
             testKey = "BaseModel.{}".format(output.getvalue().strip())
             self.assertIn(testKey, storage.all().keys())
 
+    def test_show_objects_space_notation(self):
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            testID = output.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as output:
+            obj = storage.all()["BaseModel.{}".format(testID)]
+            command = "BaseModel.show({})".format(testID)
+            self.assertFalse(HBNBCommand().onecmd(command))
+            self.assertEqual(obj.__str__(), output.getvalue().strip())
+
 if __name__ == "__main__":
     unittest.main()
