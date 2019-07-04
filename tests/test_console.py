@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''Unittest for user'''
 import unittest
-from models.user import User
+from models.base_model import BaseModel
 from unittest.mock import create_autospec, patch
 from io import StringIO
 from models import storage
@@ -49,16 +49,16 @@ class test_console(unittest.TestCase):
             self.assertLess(0, len(output.getvalue().strip()))
             testKey = "BaseModel.{}".format(output.getvalue().strip())
             self.assertIn(testKey, storage.all().keys())
-
-    def test_show_objects_space_notation(self):
+            
+    def test_destroy_objects_space_notation(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             testID = output.getvalue().strip()
-        with patch("sys.stdout", new=StringIO()) as output:
-            obj = storage.all()["BaseModel.{}".format(testID)]
-            command = "BaseModel.show({})".format(testID)
-            self.assertNotEqual(obj.__str__(), output.getvalue().strip())
-            self.assertFalse(HBNBCommand().onecmd(command))
+            with patch("sys.stdout", new=StringIO()) as output:
+                obj = storage.all()["BaseModel.{}".format(testID)]
+                command = "destroy BaseModel {}".format(testID)
+                self.assertFalse(HBNBCommand().onecmd(command))
+                self.assertNotIn(obj, storage.all())
 
 if __name__ == "__main__":
     unittest.main()
