@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = args.split()
         list_class = ["BaseModel", "Amenity", "Place", "User", "City",
-                      "Review"]
+                      "Review", "State"]
 
         if len(args_list) == 0:
             print("** class name missing **")
@@ -128,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = args.split()
         list_class = ["BaseModel", "Amenity", "Place", "User", "City",
-                      "Review"]
+                      "Review", "State"]
 
         if len(args_list) == 0:
             print("** class name missing **")
@@ -181,7 +181,7 @@ class HBNBCommand(cmd.Cmd):
 
         args_list = shlex.split(args)
         list_class = ["BaseModel", "Amenity", "Place", "User", "City",
-                      "Review"]
+                      "Review", "State"]
         if len(args_list) == 0:  # $Update
             print("** class name missing **")
         elif len(args_list) == 1:  # 1.<class name>
