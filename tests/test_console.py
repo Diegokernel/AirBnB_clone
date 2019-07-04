@@ -43,22 +43,21 @@ class test_console(unittest.TestCase):
             self.console1.onecmd("\n")
             self.assertEqual('', filer.getvalue())
 
-    def test_create(self):
+    def test_create_object(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             self.assertLess(0, len(output.getvalue().strip()))
             testKey = "BaseModel.{}".format(output.getvalue().strip())
             self.assertIn(testKey, storage.all().keys())
-            
-    def test_destroy(self):
+
+    def test_destroy_objects_space_notation(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             testID = output.getvalue().strip()
-            with patch("sys.stdout", new=StringIO()) as output:
-                obj = storage.all()["BaseModel.{}".format(testID)]
-                command = "destroy BaseModel {}".format(testID)
-                self.assertFalse(HBNBCommand().onecmd(command))
-                self.assertNotIn(obj, storage.all())
+            obj = storage.all()["BaseModel.{}".format(testID)]
+            command = "destroy BaseModel {}".format(testID)
+            self.assertFalse(HBNBCommand().onecmd(command))
+            self.assertNotIn(obj, storage.all())
 
 if __name__ == "__main__":
     unittest.main()
