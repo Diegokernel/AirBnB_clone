@@ -9,7 +9,6 @@
 * [Usage](https://github.com/Diegokernel/AirBnB_clone#usage)
 * [Installation](https://github.com/Diegokernel/AirBnB_clone#installation)
 * [Example Usage](https://github.com/Diegokernel/AirBnB_clone#example-usage)
-* [Technologies Used](https://github.com/Diegokernel/AirBnB_clone#technologies-used)
 * [Authors](https://github.com/Diegokernel/AirBnB_clone#authors)
 ---
 
@@ -97,6 +96,7 @@ EOF  all  count  create  destroy  help  quit  show  update
 echo "User.all()" | ./console.py
 (hbnb) [User] (71a36988-d044-4471-a2b2-ea5f78a7acec) {'updated_at': datetime.datetime(2019, 7, 05, 22, 48, 15, 587000), 'id': '71a36988-d044-4471-a2b2-ea5f78a7acec', 'first_name': 'Perro', 'created_at': datetime.datetime(2019, 7, 05, 22, 27, 56, 902596)}
 (hbnb)
+```
 
 ### Authors
 
