@@ -29,8 +29,14 @@ class HBNBCommand(cmd.Cmd):
     def default(self, args):
         'Quit command to exit the program\n'
         list_args = args.split(".")
+        list_class = ["BaseModel", "Amenity", "Place", "User", "City",
+                      "Review", "State"]
 
         if len(list_args) > 1:
+            if list_args[0] not in list_class:
+                print("** class doesn't exist **")
+                return
+
             show = re.match("show(.*)", list_args[1])
             destroy = re.match("destroy(.*)", list_args[1])
             update = re.match("update(.*)", list_args[1])
@@ -62,13 +68,25 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** no instance found **")
             elif update and len(list_args[1]) == update.end():  # 14.<cls>.up
-                if len(update.group()) == 8:
-                    args = ""
-                else:
-                    args_init = list_args[1][7: -1]
+                args_init = list_args[1][7: -1]
+                args_check_update_dict = re.match('".*", {.*}', args_init)
+                if not args_check_update_dict:  # 14.<cls>.up
                     args_not_comma = args_init.replace(",", "")
                     args = list_args[0] + " " + args_not_comma
-                self.do_update(args)
+                    self.do_update(args)
+                else:
+                    list_args_for_dict = args_init.split(",")
+                    key = list_args[0] + "." + list_args_for_dict[0][1: -1]
+                    if key in objects:
+                        mydict_incomplete = args_init.split("{")
+                        mydict_final = "{" + mydict_incomplete[1]
+                        dict_atributtes = eval(mydict_final)
+                        dict_atributtes.update(objects[key].to_dict())
+                        new_obj = eval(list_args[0])(**dict_atributtes)
+                        objects[key] = new_obj
+                        models.storage.save()
+                    else:
+                        print("** no instance found **")
 
     def do_quit(self, args):
         'Quit command to exit the program\n'
